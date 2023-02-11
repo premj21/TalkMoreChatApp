@@ -1,0 +1,24 @@
+{
+  "dependencies": {
+    "socket.io": "^4.6.0"
+  },
+  "scripts": {
+    "start": "node server.js"
+  },
+  "name": "server",
+  "version": "1.0.0",
+  "main": "server.js",
+  "devDependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/premj21/temp-chat-app.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/premj21/temp-chat-app/issues"
+  },
+  "homepage": "https://github.com/premj21/temp-chat-app#readme",
+  "description": ""
+}
