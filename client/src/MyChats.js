@@ -26,7 +26,7 @@ const idd = JSON.parse(localStorage.getItem("id"));
          token :localStorage.getItem('token')
         },
       };
-      const { data } = await axios.get("http://localhost:5000/api/chat", config);
+      const { data } = await axios.get("/api/chat", config);
       setChats(data);
     } catch (error) {
       console.log(error);

@@ -6,7 +6,7 @@ import userRouter from './userRoutes/userRouter.js';
 import Chatrouter from './userRoutes/chatRouter.js'; 
 import messageRoute from './userRoutes/messageRoutes.js';
 import conndb from './config/dbcn.js';
-dotenv.config();
+
 const app = express(); 
 app.use(express.urlencoded());
 app.use(express.json());
@@ -15,33 +15,36 @@ conndb();
 app.use('/api/chat',Chatrouter);
 app.use('/api/user',userRouter);
 app.use('/api/message',messageRoute);
+import {Server} from 'socket.io';
+import path from 'path';
+import {fileURLToPath} from 'url';
 
-// app.use(express.static(path.join(__dirname, "./client/build")));
-// app.get("*", function (_, res) {
-//   res.sendFile(
-//     path.join(__dirname, "./client/build/index.html"),
-//     function (err) {
-//       res.status(500).send(err);
-//     }
-//   );
-// });
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+app.use(express.static(path.join(__dirname, "./client/build")));
+app.get("*", function (_, res) {
+  res.sendFile(
+    path.join(__dirname, "./client/build/index.html"),
+    function (err) {
+      res.status(500).send(err);
+    }
+  );
+});
 
 
 
+
+const PORT = process.env.PORT || 5000
 const server = app.listen(process.env.PORT,()=>{
-    console.log(`server is running`);
+    console.log(`server is running ${process.env.PORT}`);
 })
 
 
 
- import {Server} from 'socket.io';
-
- 
 const io = new Server(server, {
   pingTimeout: 60000,
   cors: {
-    origin: process.env.PORT,
-    // credentials: true,
+    origin: PORT,
   },
 });
 
@@ -53,7 +56,6 @@ io.on("connection", (socket) => {
     socket.join(idd);
     socket.emit("connected");
   });
-
   socket.on("join chat", (room) => {
     socket.join(room);
     console.log("User Joined Room: " + room);
@@ -72,7 +74,6 @@ io.on("connection", (socket) => {
       socket.in(user._id).emit("message recieved", newMessageRecieved);
     });
   });
-
   socket.off("setup", () => {
     console.log("USER DISCONNECTED");
     socket.leave(userData._id);

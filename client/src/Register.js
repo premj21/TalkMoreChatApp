@@ -15,8 +15,8 @@ const Register = () => {
 
    const [picLoading, setPicLoading] = useState(false);
 
-
 const chnge = (e) =>{
+  console.log(picLoading);
     const{name,value} = e.target;
        setlgn(preValue=>{
         return {
@@ -67,7 +67,7 @@ const chnge = (e) =>{
         },
       };
       const { data } = await axios.post(
-           'http://localhost:5000/api/user/register',
+           '/api/user/register',
         {
           name,
           email,

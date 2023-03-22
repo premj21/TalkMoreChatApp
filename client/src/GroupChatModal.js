@@ -65,7 +65,7 @@ const GroupChatModal = ({ children }) => {
           token:localStorage.getItem('token')
         },
       };
-      const { data } = await axios.get(`http://localhost:5000/api/user/alluser?search=${search}`,config);
+      const { data } = await axios.get(`/api/user/alluser?search=${search}`,config);
       setLoading(false);
       setSearchResult(data);
     } catch (error) {
@@ -105,7 +105,7 @@ const GroupChatModal = ({ children }) => {
           token:localStorage.getItem('token')
         },
       };
-      const { data } = await axios.post(`http://localhost:5000/api/chat/group`,
+      const { data } = await axios.post(`/api/chat/group`,
         {
           name: groupChatName,
           users: JSON.stringify(selectedUsers.map((u) => u._id)),

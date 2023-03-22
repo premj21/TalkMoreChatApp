@@ -10,7 +10,7 @@ import ChaTScroll from './ChaTScroll';
 import io from "socket.io-client";
 import './sign.css'
 
-const ENDPOINT = "http://localhost:5000";
+const ENDPOINT = "/";
 var socket, selectedChatCompare;
 
 
@@ -83,7 +83,7 @@ const SingleChat = () => {
             token:localStorage.getItem('token')
           },
           };
-      const {data} = await axios.get(`http://localhost:5000/api/message/${selectedChat._id}`,conf);
+      const {data} = await axios.get(`/api/message/${selectedChat._id}`,conf);
        console.log(socketConnected+"ignr")
     
       setmessage(data);
