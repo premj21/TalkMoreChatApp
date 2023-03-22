@@ -34,7 +34,7 @@ const submitHandler = async (e) => {
     }
 	 const {email, password} = lgn;
      if(lgn.email!=="" && lgn.password!=="" ){
-        const res = await fetch('/api/user/login',{
+        const res = await fetch('http://localhost:5000/api/user/login',{
           method: "POST",
           headers : {
             "Content-Type":"application/json"

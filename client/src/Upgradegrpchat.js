@@ -49,7 +49,7 @@ const Upgradegrpchat = ({ fetchMessages, fetchAgain, setFetchAgain }) => {
       },
     }
 
-     const { data } = await axios.get(`/api/user/alluser?search=${search}`,con);
+     const { data } = await axios.get(`http://localhost:5000/api/user/alluser?search=${search}`,con);
       setLoading(false);
       setSearchResult(data);
     } catch (error) {
@@ -92,7 +92,7 @@ const Upgradegrpchat = ({ fetchMessages, fetchAgain, setFetchAgain }) => {
         },
       };
       const { data } = await axios.put(
-        `/api/chat/rename`,
+        `http://localhost:5000/api/chat/rename`,
         {
           chatId: selectedChat._id,
           chatName: groupChatName,
@@ -151,7 +151,7 @@ const Upgradegrpchat = ({ fetchMessages, fetchAgain, setFetchAgain }) => {
         },
       };
       const { data } = await axios.put(
-        `/api/chat/groupadd`,
+        `http://localhost:5000/api/chat/groupadd`,
         {
           chatId: selectedChat._id,
           userId: user1._id,
@@ -198,7 +198,7 @@ const Upgradegrpchat = ({ fetchMessages, fetchAgain, setFetchAgain }) => {
       };
 
       const { data } = await axios.put(
-        `/api/chat/groupremove`,
+        `http://localhost:5000/api/chat/groupremove`,
         {
           chatId: selectedChat._id,
           userId: idd._id,
@@ -241,7 +241,7 @@ const Upgradegrpchat = ({ fetchMessages, fetchAgain, setFetchAgain }) => {
         },
       };
       const { data } = await axios.put(
-        `/api/chat/groupremove`,
+        `http://localhost:5000/api/chat/groupremove`,
         {
           chatId: selectedChat._id,
           userId: user1._id,

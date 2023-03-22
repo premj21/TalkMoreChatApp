@@ -67,7 +67,7 @@ const chnge = (e) =>{
         },
       };
       const { data } = await axios.post(
-           '/api/user/register',
+           'http://localhost:5000/api/user/register',
         {
           name,
           email,

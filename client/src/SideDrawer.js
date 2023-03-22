@@ -48,7 +48,7 @@ const SideDrawer = () => {
         token:localStorage.getItem('token')
       },
     }
-      const { data } = await axios.post(`/api/chat`,{userId},con);
+      const { data } = await axios.post(`http://localhost:5000/api/chat`,{userId},con);
       if(!chats.find((c)=> c._id === data._id )) {setChats([data,...chats]); }
       setSelectedChat(data);
       setloadingChat(false); 
@@ -91,7 +91,7 @@ const SideDrawer = () => {
         token:localStorage.getItem('token')
       },
     }
-      const { data } = await axios.get(`/api/user/alluser?search=${search}`,con);
+      const { data } = await axios.get(`http://localhost:5000/api/user/alluser?search=${search}`,con);
       setloading(false);
       setsearchresult(data);
         }

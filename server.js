@@ -6,7 +6,7 @@ import userRouter from './userRoutes/userRouter.js';
 import Chatrouter from './userRoutes/chatRouter.js'; 
 import messageRoute from './userRoutes/messageRoutes.js';
 import conndb from './config/dbcn.js';
-dotenv.config({path:'./config/config.env'});
+dotenv.config();
 const app = express(); 
 app.use(express.urlencoded());
 app.use(express.json());
@@ -16,16 +16,15 @@ app.use('/api/chat',Chatrouter);
 app.use('/api/user',userRouter);
 app.use('/api/message',messageRoute);
 
-app.use(express.static(path.join(__dirname, "./client/build")));
-app.get("*", function (_, res) {
-  res.sendFile(
-    path.join(__dirname, "./client/build/index.html"),
-    function (err) {
-      res.status(500).send(err);
-    }
-  );
-});
-
+// app.use(express.static(path.join(__dirname, "./client/build")));
+// app.get("*", function (_, res) {
+//   res.sendFile(
+//     path.join(__dirname, "./client/build/index.html"),
+//     function (err) {
+//       res.status(500).send(err);
+//     }
+//   );
+// });
 
 
 
@@ -34,14 +33,19 @@ const server = app.listen(process.env.PORT,()=>{
 })
 
 
+
  import {Server} from 'socket.io';
+
+ 
 const io = new Server(server, {
   pingTimeout: 60000,
   cors: {
-    origin: "http://localhost:3000",
+    origin: process.env.PORT,
     // credentials: true,
   },
 });
+
+
 
 io.on("connection", (socket) => {
   console.log("Connected to socket.io");
